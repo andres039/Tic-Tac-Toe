@@ -4,3 +4,35 @@
     box-sizing: border-box;
     margin: 0;
 }
+:root {
+    --title-color: rgba(199, 60, 60, 0.801);
+    --tile-color: antiquewhite;
+}
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+.title {
+    color: var(--title-color);
+    padding: 2rem;
+    font-weight: 800;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color:var(--tile-color);
+    height: 30rem;
+    width: 30rem;
+    margin: auto;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+.tiles {
+    background-color: var(--tile-color);
+    border: solid 2px rgb(77, 74, 74);
+}
+.tiles:hover{
+    background-color: rgb(231, 221, 206);
+    cursor: pointer;
+}
