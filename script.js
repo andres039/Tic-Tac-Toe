@@ -13,6 +13,7 @@ Does the playerSelections array includes all of the
  - If not, continue playing, unless 9 spaces have been filled. That's a tie.
  */
 const grid = document.querySelector('.grid')
+let allTheSelections = []
 let endGame = false;
 
 const createPlayer = (name, figure) => {
@@ -22,10 +23,14 @@ const createPlayer = (name, figure) => {
   let playerSelections = [];
   //grid.addEventListener('click', (e) => e.target.innerText = figures)
   function markTheBoard(choice) {
+    checkSelections()
+    if (allTheSelections.includes(choice)) {
+    } else {
     playerSelections.push(choice);
     let currentTile = document.getElementById(`${choice}`)
     currentTile.innerText = figures;
   }
+}
   return {
     playerSelections,
     markTheBoard,
@@ -33,10 +38,15 @@ const createPlayer = (name, figure) => {
     figures
   };
 }
+
 const playerX = createPlayer("playerX", 'x');
 const playerY = createPlayer("playerY", 'o');
 function gameFlow(number) {
-  if (playerX.playerSelections.length + playerY.playerSelections.length >= 9) {
+  checkSelections()
+  if (allTheSelections.forEach(num => num === number)) {
+} else {
+  if (endGame === true) {console.log('Game over')} else {
+  if (playerX.playerSelections.length + playerY.playerSelections.length >= 8) {
     endGame = true;
     console.log("tie!");
   }
@@ -54,12 +64,14 @@ function gameFlow(number) {
          console.log(playerX.playerSelections)
        }
       }
+    }
+    }
     
     function checkWinner(player) {
       winCombos.forEach((triad) => {
         if (triad.every(v => player.playerSelections.includes(v))) {
-          endGame = true
-        } else {endGame = false}
+          endGame = true;
+        }
       });
       return endGame === true ? console.log(`${player.playersName} wins!!!`) : console.log('keep playing')
       
@@ -101,5 +113,9 @@ tilesArray.forEach(e => {
 })
 
 
-grid.addEventListener('click', e => gameFlow(e.target.id))
+grid.addEventListener('click', e => gameFlow(+e.target.id))
 
+function checkSelections(number) {
+  playerX.playerSelections.forEach(num => allTheSelections.push(num))
+  playerY.playerSelections.forEach(num => allTheSelections.push(num))
+};

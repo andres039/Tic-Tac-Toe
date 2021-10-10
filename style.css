@@ -19,6 +19,10 @@ header {
     padding: 2rem;
     font-weight: 800;
 }
+.marker {
+    font-weight: 600;
+    color: blue;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
